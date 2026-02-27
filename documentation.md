@@ -45,6 +45,28 @@
 
 ---
 
+## Git Repositories
+
+| Part | Repo | Branch |
+|---|---|---|
+| Frontend | `https://github.com/ilhamsahak/frontend.git` | `master` |
+| Backend | *(local — push to GitHub when ready)* | `master` |
+
+### Push Backend to GitHub
+
+1. Create a new repo on GitHub (e.g. `tour-logic-backend`)
+2. Run:
+
+```bash
+cd backend
+git remote add origin https://github.com/ilhamsahak/tour-logic-backend.git
+git push -u origin master
+```
+
+> ✅ `.env` is in `.gitignore` — credentials will not be pushed.
+
+---
+
 ## 3. Project Structure
 
 ```
