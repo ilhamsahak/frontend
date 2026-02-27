@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import {
+    LayoutDashboard, Users, Swords, Medal, Trophy,
+    CreditCard, Calendar, LogOut, ShieldCheck, Clock
+} from "lucide-react";
 import styles from "./page.module.css";
 
 const API = "http://localhost:8000";
@@ -90,11 +94,11 @@ export default function DashboardPage() {
 
                 <nav className={styles.nav}>
                     {[
-                        { id: "overview", icon: "⊞", label: "Overview" },
-                        { id: "team", icon: "👥", label: "My Team" },
-                        { id: "matches", icon: "⚔️", label: "Matches" },
-                        { id: "group", icon: "🏅", label: "Group" },
-                        { id: "bracket", icon: "🏆", label: "Bracket" },
+                        { id: "overview", icon: <LayoutDashboard size={16} />, label: "Overview" },
+                        { id: "team", icon: <Users size={16} />, label: "My Team" },
+                        { id: "matches", icon: <Swords size={16} />, label: "Matches" },
+                        { id: "group", icon: <Medal size={16} />, label: "Group" },
+                        { id: "bracket", icon: <Trophy size={16} />, label: "Bracket" },
                     ].map((item) => (
                         <button
                             key={item.id}
@@ -108,7 +112,7 @@ export default function DashboardPage() {
                 </nav>
 
                 <button className={styles.logoutBtn} onClick={handleLogout}>
-                    ← Logout
+                    <LogOut size={14} /> Logout
                 </button>
             </aside>
 
@@ -148,22 +152,22 @@ export default function DashboardPage() {
                     <div className={styles.grid}>
                         {/* Stat cards */}
                         <div className={styles.statCard}>
-                            <div className={styles.statIcon}>👥</div>
+                            <div className={styles.statIcon}><Users size={20} strokeWidth={1.5} /></div>
                             <div className={styles.statValue}>{players.length}</div>
                             <div className={styles.statLabel}>Players</div>
                         </div>
                         <div className={styles.statCard}>
-                            <div className={styles.statIcon}>🏅</div>
+                            <div className={styles.statIcon}><Medal size={20} strokeWidth={1.5} /></div>
                             <div className={styles.statValue}>{team?.group_assigned || "—"}</div>
                             <div className={styles.statLabel}>Group</div>
                         </div>
                         <div className={styles.statCard}>
-                            <div className={styles.statIcon}>⚔️</div>
+                            <div className={styles.statIcon}><Swords size={20} strokeWidth={1.5} /></div>
                             <div className={styles.statValue}>{matchHistory.length}</div>
                             <div className={styles.statLabel}>Matches Played</div>
                         </div>
                         <div className={styles.statCard}>
-                            <div className={styles.statIcon}>💳</div>
+                            <div className={styles.statIcon}><CreditCard size={20} strokeWidth={1.5} /></div>
                             <div className={`${styles.statValue} ${team?.payment_status === "paid" ? styles.paidText : styles.unpaidText}`}>
                                 {team?.payment_status === "paid" ? "Paid" : "Pending"}
                             </div>
@@ -254,7 +258,7 @@ export default function DashboardPage() {
                     <div className={styles.section}>
                         <div className={styles.card}>
                             <h2 className={styles.cardTitle}>Previous Matches</h2>
-                            <EmptyState icon="⚔️" message="No matches played yet. The tournament hasn't started." />
+                            <EmptyState icon={<Swords size={32} strokeWidth={1} />} message="No matches played yet. The tournament hasn't started." />
                         </div>
                     </div>
                 )}
@@ -267,9 +271,9 @@ export default function DashboardPage() {
                                 Group {team?.group_assigned || "—"} Standings
                             </h2>
                             {team?.group_assigned ? (
-                                <EmptyState icon="🏅" message="Group standings will appear once matches are scheduled." />
+                                <EmptyState icon={<Medal size={32} strokeWidth={1} />} message="Group standings will appear once matches are scheduled." />
                             ) : (
-                                <EmptyState icon="⏳" message="Groups haven't been assigned yet. Check back after registration closes." />
+                                <EmptyState icon={<Clock size={32} strokeWidth={1} />} message="Groups haven't been assigned yet. Check back after registration closes." />
                             )}
                         </div>
                     </div>
@@ -280,7 +284,7 @@ export default function DashboardPage() {
                     <div className={styles.section}>
                         <div className={styles.card}>
                             <h2 className={styles.cardTitle}>Tournament Bracket</h2>
-                            <EmptyState icon="🏆" message="The bracket will be published once the group stage is complete." />
+                            <EmptyState icon={<Trophy size={32} strokeWidth={1} />} message="The bracket will be published once the group stage is complete." />
                         </div>
                     </div>
                 )}
@@ -292,7 +296,7 @@ export default function DashboardPage() {
 // ── Sub-components ─────────────────────────────────────────────────────────────
 function UpcomingMatchContent({ match, team }) {
     if (!match) {
-        return <EmptyState icon="📅" message="No upcoming match scheduled yet." />;
+        return <EmptyState icon={<Calendar size={32} strokeWidth={1} />} message="No upcoming match scheduled yet." />;
     }
     return (
         <div className={styles.matchCard}>

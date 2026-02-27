@@ -1,6 +1,11 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import {
+    LayoutDashboard, Users, ClipboardList, Trophy,
+    CheckCircle, AlertCircle, Gamepad2, Pencil, Trash2,
+    Lock, Clipboard, LogOut, X
+} from "lucide-react";
 import styles from "./page.module.css";
 
 const API = "http://localhost:8000";
@@ -146,10 +151,10 @@ export default function AdminDashboard() {
                 <div className={styles.adminBadge}>Admin Panel</div>
                 <nav className={styles.nav}>
                     {[
-                        { id: "overview", icon: "⊞", label: "Overview" },
-                        { id: "teams", icon: "👥", label: "Teams" },
-                        { id: "registration", icon: "📋", label: "Registration" },
-                        { id: "results", icon: "🏆", label: "Results" },
+                        { id: "overview", icon: <LayoutDashboard size={16} />, label: "Overview" },
+                        { id: "teams", icon: <Users size={16} />, label: "Teams" },
+                        { id: "registration", icon: <ClipboardList size={16} />, label: "Registration" },
+                        { id: "results", icon: <Trophy size={16} />, label: "Results" },
                     ].map(item => (
                         <button key={item.id}
                             className={`${styles.navItem} ${activeTab === item.id ? styles.navActive : ""}`}
@@ -158,7 +163,9 @@ export default function AdminDashboard() {
                         </button>
                     ))}
                 </nav>
-                <button className={styles.logoutBtn} onClick={handleLogout}>← Logout</button>
+                <button className={styles.logoutBtn} onClick={handleLogout}>
+                    <LogOut size={14} /> Logout
+                </button>
             </aside>
 
             {/* ── Main ── */}
@@ -181,10 +188,10 @@ export default function AdminDashboard() {
                 {/* OVERVIEW */}
                 {activeTab === "overview" && (
                     <div className={styles.grid4}>
-                        <StatCard icon="👥" value={totalTeams} label="Total Teams" />
-                        <StatCard icon="✅" value={paidTeams} label="Paid" accent="cyan" />
-                        <StatCard icon="⚠️" value={unpaidTeams} label="Unpaid" accent="yellow" />
-                        <StatCard icon="🎮" value={totalPlayers} label="Total Players" />
+                        <StatCard icon={<Users size={20} strokeWidth={1.5} />} value={totalTeams} label="Total Teams" />
+                        <StatCard icon={<CheckCircle size={20} strokeWidth={1.5} />} value={paidTeams} label="Paid" accent="cyan" />
+                        <StatCard icon={<AlertCircle size={20} strokeWidth={1.5} />} value={unpaidTeams} label="Unpaid" accent="yellow" />
+                        <StatCard icon={<Gamepad2 size={20} strokeWidth={1.5} />} value={totalPlayers} label="Total Players" />
                     </div>
                 )}
 
@@ -192,7 +199,7 @@ export default function AdminDashboard() {
                 {activeTab === "teams" && (
                     <div className={styles.teamsSection}>
                         {teams.length === 0 ? (
-                            <EmptyState icon="👥" msg="No teams registered yet." />
+                            <EmptyState icon={<Users size={32} strokeWidth={1} />} msg="No teams registered yet." />
                         ) : teams.map(team => (
                             <div key={team.id} className={styles.teamCard}>
                                 <div className={styles.teamCardHeader}>
@@ -215,9 +222,9 @@ export default function AdminDashboard() {
                                                 <button className={styles.btnCancel} onClick={() => setEditingTeam(null)}>Cancel</button>
                                             </>
                                         ) : (
-                                            <button className={styles.btnEdit} onClick={() => setEditingTeam({ id: team.id, team_name: team.team_name })}>✏️ Edit</button>
+                                            <button className={styles.btnEdit} onClick={() => setEditingTeam({ id: team.id, team_name: team.team_name })}><Pencil size={13} /> Edit</button>
                                         )}
-                                        <button className={styles.btnDelete} onClick={() => deleteTeam(team.id)}>🗑 Delete</button>
+                                        <button className={styles.btnDelete} onClick={() => deleteTeam(team.id)}><Trash2 size={13} /> Delete</button>
                                     </div>
                                 </div>
 
@@ -237,7 +244,7 @@ export default function AdminDashboard() {
                                                         <td>{p.is_captain ? <span className={styles.roleCaptain}>Captain</span> : <span className={styles.roleMember}>Member</span>}</td>
                                                         <td className={styles.actionCell}>
                                                             <button className={styles.btnSave} onClick={savePlayer} disabled={saving}>Save</button>
-                                                            <button className={styles.btnCancel} onClick={() => setEditingPlayer(null)}>✕</button>
+                                                            <button className={styles.btnCancel} onClick={() => setEditingPlayer(null)}><X size={13} /></button>
                                                         </td>
                                                     </>
                                                 ) : (
@@ -247,8 +254,8 @@ export default function AdminDashboard() {
                                                         <td>{p.ingame_id}</td>
                                                         <td>{p.is_captain ? <span className={styles.roleCaptain}>Captain</span> : <span className={styles.roleMember}>Member</span>}</td>
                                                         <td className={styles.actionCell}>
-                                                            <button className={styles.btnEdit} onClick={() => setEditingPlayer({ id: p.id, real_name: p.real_name, ign: p.ign, ingame_id: p.ingame_id })}>✏️</button>
-                                                            {!p.is_captain && <button className={styles.btnDelete} onClick={() => deletePlayer(team.id, p.id)}>🗑</button>}
+                                                            <button className={styles.btnEdit} onClick={() => setEditingPlayer({ id: p.id, real_name: p.real_name, ign: p.ign, ingame_id: p.ingame_id })}><Pencil size={13} /></button>
+                                                            {!p.is_captain && <button className={styles.btnDelete} onClick={() => deletePlayer(team.id, p.id)}><Trash2 size={13} /></button>}
                                                         </td>
                                                     </>
                                                 )}
@@ -265,7 +272,7 @@ export default function AdminDashboard() {
                 {activeTab === "registration" && (
                     <div className={styles.regSection}>
                         <div className={`${styles.regCard} ${regOpen ? styles.regCardOpen : styles.regCardClosed}`}>
-                            <div className={styles.regCardIcon}>{regOpen ? "📋" : "🔒"}</div>
+                            <div className={styles.regCardIcon}>{regOpen ? <Clipboard size={28} strokeWidth={1.5} /> : <Lock size={28} strokeWidth={1.5} />}</div>
                             <h2 className={styles.regCardTitle}>
                                 Registration is currently <span>{regOpen ? "OPEN" : "CLOSED"}</span>
                             </h2>
@@ -279,7 +286,7 @@ export default function AdminDashboard() {
                                 onClick={toggleReg}
                                 disabled={toggling}
                             >
-                                {toggling ? <span className={styles.spinner} /> : (regOpen ? "🔒 Close Registration" : "📋 Open Registration")}
+                                {toggling ? <span className={styles.spinner} /> : (regOpen ? <><Lock size={14} /> Close Registration</> : <><Clipboard size={14} /> Open Registration</>)}
                             </button>
                         </div>
                         <div className={styles.regStats}>
@@ -292,7 +299,7 @@ export default function AdminDashboard() {
 
                 {/* RESULTS */}
                 {activeTab === "results" && (
-                    <EmptyState icon="🏆" msg="Match results will appear here once the tournament begins." />
+                    <EmptyState icon={<Trophy size={32} strokeWidth={1} />} msg="Match results will appear here once the tournament begins." />
                 )}
             </main>
         </div>
