@@ -1,0 +1,214 @@
+/* ── Login Page ── */
+.wrapper {
+    min-height: 100vh;
+    background: #07091a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.orb1 {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 26, 255, 0.22) 0%, transparent 70%);
+    filter: blur(100px);
+    top: -150px;
+    left: -150px;
+    pointer-events: none;
+    animation: orbFloat 8s ease-in-out infinite alternate;
+}
+
+.orb2 {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(51, 242, 255, 0.14) 0%, transparent 70%);
+    filter: blur(100px);
+    bottom: -100px;
+    right: -100px;
+    pointer-events: none;
+    animation: orbFloat 9s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbFloat {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-30px);
+    }
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+    animation: fadeUp 0.5s ease both;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logoWrap {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    filter: drop-shadow(0 0 20px rgba(51, 242, 255, 0.4));
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #33F2FF, #8A1AFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.72rem 1rem;
+    font-size: 0.93rem;
+    color: #f1f5f9;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.input:focus {
+    border-color: #33F2FF;
+    box-shadow: 0 0 0 3px rgba(51, 242, 255, 0.12);
+}
+
+.errorBox {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    color: #f87171;
+}
+
+.btnLogin {
+    width: 100%;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #33F2FF, #00c8d4);
+    border: none;
+    border-radius: 10px;
+    color: #07091a;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(51, 242, 255, 0.3);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnLogin:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(51, 242, 255, 0.5);
+}
+
+.btnLogin:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #07091a;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.registerLink {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.registerLink a {
+    color: #33F2FF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.registerLink a:hover {
+    text-decoration: underline;
+}

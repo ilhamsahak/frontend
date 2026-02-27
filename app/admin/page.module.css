@@ -1,0 +1,661 @@
+/* ── Admin Dashboard ── */
+.page {
+    display: flex;
+    min-height: 100vh;
+    background: #07091a;
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+}
+
+.orb1 {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 26, 255, 0.18) 0%, transparent 70%);
+    filter: blur(120px);
+    top: -150px;
+    left: -150px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orb2 {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(51, 242, 255, 0.12) 0%, transparent 70%);
+    filter: blur(120px);
+    bottom: -100px;
+    right: -100px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.025);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+}
+
+.sidebarLogo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.sidebarLogoImg {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.adminBadge {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8A1AFF;
+    background: rgba(138, 26, 255, 0.12);
+    border: 1px solid rgba(138, 26, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+    width: 100%;
+}
+
+.navItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f1f5f9;
+}
+
+.navActive {
+    background: rgba(138, 26, 255, 0.12) !important;
+    color: #c4b5fd !important;
+    border: 1px solid rgba(138, 26, 255, 0.25);
+}
+
+.logoutBtn {
+    padding: 0.6rem 0.9rem;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.18);
+    border-radius: 10px;
+    color: #f87171;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: left;
+}
+
+.logoutBtn:hover {
+    background: rgba(239, 68, 68, 0.16);
+}
+
+/* ── Main ── */
+.main {
+    flex: 1;
+    padding: 2rem 2.5rem;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.topBar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.pageTitle {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    line-height: 1.1;
+}
+
+.pageSubtitle {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.25rem;
+}
+
+.regStatusPill {
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.regOpen {
+    background: rgba(51, 242, 255, 0.1);
+    border: 1px solid rgba(51, 242, 255, 0.3);
+    color: #33F2FF;
+}
+
+.regClosed {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+/* ── Stat grid ── */
+.grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: border-color 0.2s;
+}
+
+.statCard:hover {
+    border-color: rgba(138, 26, 255, 0.3);
+}
+
+.statIcon {
+    font-size: 1.5rem;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #f1f5f9;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cyanText {
+    color: #33F2FF !important;
+}
+
+.yellowText {
+    color: #fbbf24 !important;
+}
+
+/* ── Teams section ── */
+.teamsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.teamCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeUp 0.3s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.teamCardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.teamCardName {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.teamCardActions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.payBadge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.paid {
+    background: rgba(51, 242, 255, 0.1);
+    border: 1px solid rgba(51, 242, 255, 0.25);
+    color: #33F2FF;
+}
+
+.unpaid {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    color: #fbbf24;
+}
+
+/* ── Table ── */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+}
+
+.table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.table td {
+    padding: 0.6rem 0.75rem;
+    color: #e2e8f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.ignCell {
+    color: #33F2FF;
+    font-weight: 600;
+}
+
+.actionCell {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.roleCaptain {
+    background: rgba(51, 242, 255, 0.1);
+    border: 1px solid rgba(51, 242, 255, 0.25);
+    color: #33F2FF;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.roleMember {
+    background: rgba(138, 26, 255, 0.1);
+    border: 1px solid rgba(138, 26, 255, 0.25);
+    color: #c4b5fd;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+/* ── Inline edit inputs ── */
+.inlineInput {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(51, 242, 255, 0.4);
+    border-radius: 8px;
+    padding: 0.4rem 0.75rem;
+    color: #f1f5f9;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    outline: none;
+    width: 220px;
+}
+
+.cellInput {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    color: #f1f5f9;
+    font-size: 0.82rem;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+}
+
+.cellInput:focus {
+    border-color: #33F2FF;
+}
+
+/* ── Action buttons ── */
+.btnEdit {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 7px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btnEdit:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.btnDelete {
+    background: rgba(239, 68, 68, 0.09);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border-radius: 7px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btnDelete:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.btnSave {
+    background: rgba(51, 242, 255, 0.12);
+    border: 1px solid rgba(51, 242, 255, 0.3);
+    color: #33F2FF;
+    border-radius: 7px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btnSave:hover {
+    background: rgba(51, 242, 255, 0.22);
+}
+
+.btnSave:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btnCancel {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    border-radius: 7px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* ── Registration section ── */
+.regSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 560px;
+}
+
+.regCard {
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.regCardOpen {
+    background: rgba(51, 242, 255, 0.04);
+    border-color: rgba(51, 242, 255, 0.2);
+}
+
+.regCardClosed {
+    background: rgba(239, 68, 68, 0.04);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.regCardIcon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.regCardTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.6rem;
+}
+
+.regCardTitle span {
+    color: #33F2FF;
+}
+
+.regCardClosed .regCardTitle span {
+    color: #f87171;
+}
+
+.regCardDesc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+}
+
+.toggleBtn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.toggleClose {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);
+}
+
+.toggleClose:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(239, 68, 68, 0.5);
+}
+
+.toggleOpen {
+    background: linear-gradient(135deg, #33F2FF, #00c8d4);
+    color: #07091a;
+    box-shadow: 0 4px 20px rgba(51, 242, 255, 0.35);
+}
+
+.toggleOpen:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(51, 242, 255, 0.5);
+}
+
+.toggleBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.regStats {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.regStatRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.88rem;
+}
+
+.regStatRow:last-child {
+    border-bottom: none;
+}
+
+.regStatRow span {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.regStatRow strong {
+    color: #f1f5f9;
+    font-weight: 700;
+}
+
+/* ── Empty state ── */
+.emptyState {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.emptyIcon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.45;
+}
+
+/* ── Spinner / loading ── */
+.centered {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: #07091a;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+}
+
+.spinnerLg {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(138, 26, 255, 0.15);
+    border-top-color: #8A1AFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 56px;
+        padding: 1rem 0.5rem;
+    }
+
+    .adminBadge,
+    .navItem span:last-child {
+        display: none;
+    }
+
+    .main {
+        padding: 1.25rem 1rem;
+    }
+
+    .grid4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,64 +1,70 @@
-import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
+
+export const metadata = {
+  title: "Magic Chess Automanaged Tournament",
+  description:
+    "The official registration portal for the Magic Chess Automanaged Tournament. Register your team and compete for glory.",
+};
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.heroWrapper}>
+      {/* Animated background orbs */}
+      <div className={styles.orb1} />
+      <div className={styles.orb2} />
+      <div className={styles.orb3} />
+
+      <main className={styles.hero}>
+        {/* Tournament logo */}
+        <div className={styles.emblem}>
+          <img
+            src="/tournament-logo.png"
+            alt="Magic Chess Tournament Logo"
+            className={styles.emblemImg}
+          />
         </div>
+
+        <div className={styles.badge}>Season 2026</div>
+
+        <h1 className={styles.heroTitle}>
+          Magic Chess
+          <br />
+          <span className={styles.heroAccent}>Automanaged</span>
+          <br />
+          Tournament
+        </h1>
+
+        <p className={styles.heroDesc}>
+          Assemble your squad, register your team, and rise through the ranks.
+          <br />
+          The battlefield awaits — are you ready?
+        </p>
+
         <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+          <Link href="/register" className={styles.ctaPrimary}>
+            Register Your Team →
+          </Link>
+          <a href="#about" className={styles.ctaSecondary}>
+            Learn More
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        </div>
+
+        <div className={styles.statsRow}>
+          <div className={styles.stat}>
+            <span className={styles.statNum}>4–10</span>
+            <span className={styles.statLabel}>Players / Team</span>
+          </div>
+          <div className={styles.statDivider} />
+          <div className={styles.stat}>
+            <span className={styles.statNum}>Free</span>
+            <span className={styles.statLabel}>Entry</span>
+          </div>
+          <div className={styles.statDivider} />
+          <div className={styles.stat}>
+            <span className={styles.statNum}>🏆</span>
+            <span className={styles.statLabel}>Grand Prize</span>
+          </div>
         </div>
       </main>
     </div>

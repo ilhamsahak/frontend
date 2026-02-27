@@ -1,141 +1,268 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/* ─────────────────────────────────────────────────────────────────────────────
+   Magic Chess Tournament — Landing Hero
+   Accent: cyan #33F2FF · purple #8A1AFF
+───────────────────────────────────────────────────────────────────────────── */
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
+.heroWrapper {
   min-height: 100vh;
+  background: #07091a;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+/* ── Background orbs ── */
+.orb1,
+.orb2,
+.orb3 {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 9s ease-in-out infinite alternate;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.orb1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(138, 26, 255, 0.25) 0%, transparent 70%);
+  top: -180px;
+  left: -200px;
+  animation-delay: 0s;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.orb2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(51, 242, 255, 0.14) 0%, transparent 70%);
+  bottom: -100px;
+  right: -120px;
+  animation-delay: 4s;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.orb3 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(138, 26, 255, 0.1) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 7s;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
+@keyframes orbFloat {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(-40px) scale(1.1);
+  }
 }
 
+/* ── Hero content ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Logo ── */
+.emblem {
+  display: inline-block;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 28px rgba(51, 242, 255, 0.55));
+  animation: pulsePiece 3.5s ease-in-out infinite;
+}
+
+.emblemImg {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+@keyframes pulsePiece {
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 28px rgba(51, 242, 255, 0.55));
+  }
+
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 48px rgba(51, 242, 255, 0.9));
+  }
+}
+
+/* ── Season badge ── */
+.badge {
+  display: inline-block;
+  background: rgba(51, 242, 255, 0.1);
+  border: 1px solid rgba(51, 242, 255, 0.3);
+  color: #33F2FF;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Title ── */
+.heroTitle {
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 900;
+  color: #f1f5f9;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 1.25rem;
+}
+
+.heroAccent {
+  background: linear-gradient(135deg, #33F2FF 0%, #8A1AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Description ── */
+.heroDesc {
+  font-size: 1.08rem;
+  color: rgba(255, 255, 255, 0.48);
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+
+/* ── CTAs ── */
 .ctas {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
+  gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.ctaPrimary {
+  display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #33F2FF, #00c8d4);
+  color: #07091a;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 12px;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(51, 242, 255, 0.35);
+  text-decoration: none;
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(51, 242, 255, 0.55);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+/* ── Stats strip ── */
+.statsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.statNum {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #33F2FF;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.statDivider {
+  width: 1px;
   height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  margin: 0 1rem;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2.2rem;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .intro {
-    gap: 16px;
+  .ctaPrimary,
+  .ctaSecondary {
+    justify-content: center;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .statsRow {
+    padding: 1rem;
   }
 }
